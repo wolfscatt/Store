@@ -1,0 +1,28 @@
+@model IEnumerable<Category>
+
+
+<div class="text-center my-4">
+    <div class="display-6 ">
+        <bold>Categories</bold>
+    </div>
+</div>
+<hr>
+<div class="my-5">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cat in Model)
+            {
+                <tr>
+                    <td>@cat.CategoryId</td>
+                    <td>@cat.CategoryName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

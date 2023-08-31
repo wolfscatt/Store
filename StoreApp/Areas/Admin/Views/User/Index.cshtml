@@ -1,0 +1,57 @@
+@model IEnumerable<IdentityUser>
+
+<div class="text-center my-5">
+    <div class="display-6">
+        Users
+    </div>
+</div>
+<hr>
+<div class="d-flex justify-content-end my-3">
+    <a class="btn btn-outline-success " asp-action="Create">
+        <i class="fa-solid fa-plus"></i>
+        Add User
+    </a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Roles</th>
+            <th class="text-center">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td user-name="@user.UserName" user-role=""></td>
+                <td>
+                    <div class="d-flex justify-content-center mt-4">
+                        <div class="btn-group " role="group">
+                            <a class="btn btn-sm btn-outline-warning" asp-action="Update" asp-route-id="@user.UserName">
+                                <i class="fa-solid fa-pen-to-square fa-sm"></i>
+                                Update
+                            </a>
+                            <a class="btn btn-sm btn-outline-info" asp-action="ResetPassword" asp-route-id="@user.UserName">
+                                <i class="fa-solid fa-passport fa-sm"></i>
+                                Reset Password
+                            </a>
+                            <form asp-action="Delete" method="post">
+                                <input type="hidden" name="UserName" value="@user.UserName">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash-can fa-sm"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
